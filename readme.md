@@ -33,7 +33,7 @@ HK Bus Express 是一個高效、響應式的 Progressive Web App (PWA)，支援
 
 建立 GitHub 儲存庫 (Repository)：
 
-開啟 GitHub，建立一個新的公開 Repository（例如 hk-bus-express）。
+開啟 GitHub，建立一個新的公開 Repository（例如 Public-Bus）。
 
 上傳專案檔案：
 
@@ -51,7 +51,7 @@ Branch 選擇 main (或 master) / /(root)，然後點擊 Save。
 
 存取 PWA 網站：
 
-約 1~2 分鐘後，您的網站即可透過 https://<your-github-username>.github.io/hk-bus-express/ 存取。
+約 1~2 分鐘後，您的網站即可透過 https://kkoo-p.github.io/Public-Bus/ 存取。
 
 由於 GitHub Pages 提供免費的 HTTPS 連線，GPS 定位與 PWA 安裝功能均可順暢運行。
 
