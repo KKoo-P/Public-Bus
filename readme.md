@@ -1,76 +1,61 @@
-🚌 HK Bus Express (香港即時巴士指南 PWA)
+🚌 HK Bus Express - 香港九巴及城巴即時路線網頁 (HK Bus Live ETA)
 
-HK Bus Express 是一個高效、響應式的 Progressive Web App (PWA)，支援香港九巴 (KMB) 及城巴 (Citybus) 的即時到站時間 (ETA) 查詢、路線搜尋、動態地圖軌跡繪製，以及 GPS 精準位置檢測。
+A modern, responsive, and bilingual Progressive Web App (PWA) for checking real-time Hong Kong bus routes, stops, live arrival ETAs, and fare information for KMB (九巴) and Citybus (城巴).
 
-🌟 功能特色 (Key Features)
+一款響應式、雙語的香港公共巴士即時路線與到站時間（ETA）網頁應用程式，支援九巴與城巴路線數據、動態地圖、車費顯示及 PWA 安裝。
 
-⚡ 即時到站預測 (Live ETA)：直接串接香港政府開放數據 API (DATA.GOV.HK)，提供精準巴士班次倒數。
+✨ Features / 功能特點
 
-📍 精準 GPS 定位 (Precise Geolocation)：一鍵獲取當前位置，在地圖上標示並自動計算與各巴士站點的距離。
+⚡ Real-Time Bus ETA (即時到站時間): Live arrival countdown powered by DATA.GOV.HK and bus operator APIs.
 
-🗺️ 動態互動地圖 (Interactive Leaflet Map)：繪製巴士路線行車軌跡與站點標記，支援點擊快速地圖導航。
+💳 Fare Information (車費數據顯示): Clear display of full fares and sectional fares across route lists, timelines, and interactive map popups.
 
-📲 PWA 支援 (Progressive Web App)：支援「加入主畫面 (Add to Home Screen)」，可作為 Native App 獨立開啟，具備 Service Worker 離線快取能力。
+🌐 Dynamic Bilingual Support (全動態雙語轉換): Toggle seamlessly between 繁體中文 (Traditional Chinese) and English. All interface text, route destinations, stop names, tooltips, map popups, and legends update dynamically without refreshing.
 
-🌐 雙語介面 (Bilingual Support)：完整支援繁體中文及英文切換。
+🗺️ Interactive Leaflet Map (互動式地圖): Displays route traces and bus stop markers. Maintained in Day Mode at all times for maximum readability and optimal contrast.
 
-🌙 深色/淺色模式 (Dark / Light Theme)：根據系統偏好自動適應，並支援手動切換。
+🌓 Theme Mode (日夜間模式): UI supports both Light Mode and Dark Mode for comfortable viewing in any environment.
 
-⭐ 路線收藏 (Favorites)：本機儲存常用路線，方便快速查閱。
+🌟 Favorites System (收藏功能): Save frequently used bus routes to local storage for quick access.
 
-📁 檔案結構 (File Structure)
+📱 PWA Ready (PWA 獨立應用程式): Includes manifest.json and sw.js (Service Worker) allowing users to install the web app on iOS, Android, or Desktop with offline asset caching.
 
-.
-├── index.html       # 應用程式主頁面 (HTML5 + Tailwind CSS + Leaflet JS)
-├── manifest.json    # PWA 清單檔案 (描述 App 名稱、主題色、圖示)
-├── sw.js            # Service Worker 腳本 (離線快取與網路策略)
-├── icon-192.png     # PWA 圖示 (192x192)
-├── icon-512.png     # PWA 圖示 (512x512)
-└── README.md        # 專案說明文件
+🛡️ Graceful API Fallback (備用數據機制): Automatically switches to demo fallback dataset if external API requests encounter network latency or CORS restrictions.
+
+📁 Repository Structure / 檔案結構
+
+├── index.html        # Main Application File (HTML5, Tailwind CSS, Leaflet JS, Logic)
+├── manifest.json     # Progressive Web App (PWA) Manifest File
+├── sw.js             # Service Worker for Offline Caching & Network First Strategy
+└── README.md         # Project Documentation
 
 
-🚀 如何部署至 GitHub Pages (Deployment Guide)
+🚀 How to Deploy on GitHub Pages / 部署步驟
 
-建立 GitHub 儲存庫 (Repository)：
+Upload Files: Upload index.html, manifest.json, and sw.js into your GitHub repository root folder.
 
-開啟 GitHub，建立一個新的公開 Repository（例如 Public-Bus）。
+Enable GitHub Pages:
 
-上傳專案檔案：
+Navigate to Settings > Pages in your GitHub repository.
 
-將 index.html、manifest.json、sw.js、README.md 上傳至儲存庫的根目錄 (root)。
+Under Build and deployment > Branch, select main (or master) branch and / (root).
 
-(可選) 上傳 icon-192.png 與 icon-512.png 圖片作為 App 圖示。
+Click Save.
 
-啟用 GitHub Pages：
+Access Your App: After 1-2 minutes, your live site will be available at https://<your-username>.github.io/<your-repository-name>/.
 
-進入 Repository 的 Settings ➔ Pages。
+🛠️ Built With / 使用技術
 
-在 Source 選項中選擇 Deploy from a branch。
+HTML5 & JavaScript (ES6+)
 
-Branch 選擇 main (或 master) / /(root)，然後點擊 Save。
+Tailwind CSS CDN - Utility-first CSS Framework
 
-存取 PWA 網站：
+Leaflet.js - Open-source JavaScript library for interactive maps
 
-約 1~2 分鐘後，您的網站即可透過 https://kkoo-p.github.io/Public-Bus/ 存取。
+CartoDB Voyager Tiles - Clean & crisp map tile layer
 
-由於 GitHub Pages 提供免費的 HTTPS 連線，GPS 定位與 PWA 安裝功能均可順暢運行。
+DATA.GOV.HK APIs - Hong Kong Government Data OneStop
 
-📲 如何安裝為 App (PWA Installation)
+📄 License / 條款與聲明
 
-iOS (Safari)：點擊底部「分享」按鈕 ➔ 選擇「加入主畫面 (Add to Home Screen)」。
-
-Android (Chrome)：點擊右上角三點選單 ➔ 選擇「安裝應用程式」或「加入主畫面」。
-
-電腦端 (Chrome / Edge)：網址列右側會出現「安裝」圖示，點擊即可開啟獨立視窗。
-
-📡 API 資料來源 (Data Sources)
-
-DATA.GOV.HK (香港政府資料一線通)
-
-九龍巴士 (KMB) Open API
-
-城巴 (Citybus) Open API
-
-📄 授權條款 (License)
-
-本專案採用 MIT License 授權。
+This project is open source and created for transportation reference only. Bus data is sourced from open APIs on DATA.GOV.HK, KMB, and Citybus.

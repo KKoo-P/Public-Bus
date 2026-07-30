@@ -1,61 +1,47 @@
-const CACHE_NAME = 'hk-bus-express-v1';
-const STATIC_ASSETS = [
+const CACHE_NAME = 'hk-bus-v1';
+const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  'https://cdn.tailwindcss.com',
   'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
-  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
+  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
 ];
 
+// 安裝並快取靜態資源
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
-    }).then(() => self.skipWaiting())
+      return cache.addAll(ASSETS_TO_CACHE);
+    })
   );
 });
 
+// 啟用並清理舊快取
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
+    caches.keys().then((keys) => {
       return Promise.all(
-        cacheNames.map((cache) => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
-        })
+        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
       );
-    }).then(() => self.clients.claim())
+    })
   );
 });
 
+// 攔截請求：即時 API (Network First)，靜態資源 (Cache First)
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
-  // Strategy: Network-First for bus data APIs
-  if (url.hostname.includes('data.etabus.gov.hk') || url.hostname.includes('rt.data.gov.hk')) {
+  // 若為即時 ETA API，採用 Network First
+  if (url.hostname.includes('data.gov.hk') || url.hostname.includes('etabus.gov.hk')) {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
     );
-    return;
+  } else {
+    // 靜態資源採用 Cache First
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        return response || fetch(event.request);
+      })
+    );
   }
-
-  // Strategy: Cache-First for static assets
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-      return fetch(event.request).then((networkResponse) => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          return networkResponse;
-        }
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseToCache));
-        return networkResponse;
-      });
-    })
-  );
 });
