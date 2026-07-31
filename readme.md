@@ -28,21 +28,8 @@ A modern, responsive, and bilingual Progressive Web App (PWA) for querying real-
 ├── sw.js             # Service Worker for Offline Caching & API Network Strategies
 └── README.md         # Project Documentation
 
-
-🚀 Deployment Instructions for GitHub Pages / 部署步驟
-
-Upload Files: Upload index.html, manifest.json, sw.js, and README.md to your GitHub repository root folder.
-
-Configure GitHub Pages:
-
-Go to Settings > Pages in your GitHub repository.
-
-Under Source, select Deploy from a branch.
-
-Choose the main (or master) branch and / (root) directory, then click Save.
-
 Access Your Live Web App: Within 1–2 minutes, your live site will be accessible at:
-https://<your-username>.github.io/<your-repository-name>/
+https://kkoo-p.github.io/Public-Bus/
 
 🛠️ Built With / 技術棧
 
