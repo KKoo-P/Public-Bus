@@ -16,10 +16,6 @@ A modern, responsive, and bilingual Progressive Web App (PWA) for querying real-
 
 📍 Precise GPS Geolocation (精準 GPS 位置定位): Prompts for browser permission to accurately pinpoint user location on the interactive map with a pulse marker and accuracy halo.
 
-📱 PWA Ready (PWA 獨立應用程式): Includes manifest.json and sw.js (Service Worker), enabling users to install the web application directly on iOS, Android, or Desktop.
-
-🛡️ Graceful Offline Fallback (備用數據機制): Built-in notification toasts and mock datasets ensure the app remains fully functional even if external APIs face network CORS or latency issues.
-
 📁 Repository Structure / 檔案結構
 
 .
